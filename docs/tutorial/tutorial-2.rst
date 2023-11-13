@@ -13,11 +13,11 @@ In the ``src/helloworld`` directory, you should see 3 files: ``__init__.py``,
 ``__main__.py`` and ``app.py``.
 
 ``__init__.py`` marks the ``helloworld`` directory as an importable Python
-module. It is an empty file; the very fact it exists tells the Python
-interpreter that the ``helloworld`` directory defines a module.
+package. It is an empty file; the very fact it exists tells the Python
+interpreter that the ``helloworld`` directory defines a package.
 
-``__main__.py`` marks the ``helloworld`` module as a special kind of module -
-an executable module. If you try to run the ``helloworld`` module using
+``__main__.py`` marks the ``helloworld`` package as a special kind of package -
+an executable one. If you try to run  ``helloworld`` using
 ``python -m helloworld``, the ``__main__.py`` file is where Python will start
 executing. The contents of ``__main__.py`` is relatively simple::
 
@@ -59,7 +59,7 @@ First, we import the ``toga`` widget toolkit, as well as some style-related
 utility classes and constants. Our code doesn't use these yet - but we'll make
 use of them shortly.
 
-Then, we define a class::
+Then, we define a subclass of ``toga.App``::
 
     class HelloWorld(toga.App):
 
@@ -72,7 +72,7 @@ Next, we define a ``startup()`` method::
         def startup(self):
             main_box = toga.Box()
 
-The first thing the startup method does is to define a main box. Toga's layout
+The first thing this method does is to define a main box. Toga's layout
 scheme behaves similar to HTML. You build an application by constructing a
 collection of boxes, each of which contains other boxes, or actual widgets. You
 then apply styles to these boxes to define how they will consume the available
@@ -97,21 +97,23 @@ application to show our window::
             self.main_window.content = main_box
             self.main_window.show()
 
-Last of all, we define a ``main()`` method. This is what creates the instance
-of our application::
+Last of all, we define a ``main()`` method that is imported and invoked by
+``__main__.py``. It creates and returns an instance of our ``HelloWorld``
+application::
 
     def main():
         return HelloWorld()
-
-This ``main()`` method is the one that is imported and invoked by
-``__main__.py``. It creates and returns an instance of our ``HelloWorld``
-application.
 
 That's the simplest possible Toga application. Let's put some of our own
 content into the application, and make the app do something interesting.
 
 Adding some content of our own
 ==============================
+
+.. note::
+
+    Don't remove the imports at the top of the file , or the ``main()`` at the
+    bottom. You only need to update the ``HelloWorld`` class.
 
 Modify your ``HelloWorld`` class inside ``src/helloworld/app.py`` so that it
 looks like this::
@@ -145,11 +147,6 @@ looks like this::
 
         def say_hello(self, widget):
             print(f"Hello, {self.name_input.value}")
-
-.. note::
-
-    Don't remove the imports at the top of the file , or the ``main()`` at the
-    bottom. You only need to update the ``HelloWorld`` class.
 
 Let's look in detail at what has changed.
 
