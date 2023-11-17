@@ -13,13 +13,13 @@ In the ``src/helloworld`` directory, you should see 3 files: ``__init__.py``,
 ``__main__.py`` and ``app.py``.
 
 ``__init__.py`` marks the ``helloworld`` directory as an importable Python
-package. It is an empty file; the very fact it exists tells the Python
+package. It is an empty file; even when empty, it tells the Python
 interpreter that the ``helloworld`` directory defines a package.
 
-``__main__.py`` marks the ``helloworld`` package as a special kind of package -
-an executable one. If you try to run  ``helloworld`` using
-``python -m helloworld``, the ``__main__.py`` file is where Python will start
-executing. The contents of ``__main__.py`` is relatively simple::
+``__main__.py`` marks ``helloworld`` as a special kind of package -
+an executable one. The command
+``python -m helloworld`` runs the ``__main__.py`` file, whose  content
+is relatively simple::
 
     from helloworld.app import main
 
